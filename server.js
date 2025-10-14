@@ -7,7 +7,7 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server: server });
 
 // Настройка статических файлов
 app.use(express.static(path.join(__dirname, 'public')));
@@ -17,27 +17,20 @@ app.use(express.json());
 const db = new sqlite3.Database('./chat.db');
 
 // Создание таблицы сообщений
-db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS messages (
-        id TEXT PRIMARY KEY,
-        nickname TEXT NOT NULL,
-        content TEXT NOT NULL,
-        timestamp INTEGER NOT NULL
-    )`);
-    
-    // Создаем индекс для быстрого поиска по времени
-    db.run(`CREATE INDEX IF NOT EXISTS idx_timestamp ON messages(timestamp DESC)`);
+db.serialize(function() {
+    db.run("CREATE TABLE IF NOT EXISTS messages (id TEXT PRIMARY KEY, nickname TEXT NOT NULL, content TEXT NOT NULL, timestamp INTEGER NOT NULL)");
+    db.run("CREATE INDEX IF NOT EXISTS idx_timestamp ON messages(timestamp DESC)");
 });
 
 // Хранение активных WebSocket соединений
 const clients = new Set();
 
 // WebSocket соединения
-wss.on('connection', (ws) => {
+wss.on('connection', function(ws) {
     console.log('Новое соединение установлено');
     clients.add(ws);
     
-    ws.on('message', (data) => {
+    ws.on('message', function(data) {
         try {
             const message = JSON.parse(data);
             
@@ -81,7 +74,7 @@ wss.on('connection', (ws) => {
                             timestamp: timestamp
                         };
                         
-                        clients.forEach(client => {
+                        clients.forEach(function(client) {
                             if (client.readyState === WebSocket.OPEN) {
                                 client.send(JSON.stringify(broadcastMessage));
                             }
@@ -98,19 +91,19 @@ wss.on('connection', (ws) => {
         }
     });
     
-    ws.on('close', () => {
+    ws.on('close', function() {
         console.log('Соединение закрыто');
         clients.delete(ws);
     });
     
-    ws.on('error', (error) => {
+    ws.on('error', function(error) {
         console.error('WebSocket ошибка:', error);
         clients.delete(ws);
     });
 });
 
 // API для получения истории сообщений
-app.get('/api/messages', (req, res) => {
+app.get('/api/messages', function(req, res) {
     const limit = parseInt(req.query.limit) || 1000;
     const before = req.query.before ? parseInt(req.query.before) : Date.now() + 1;
     
@@ -121,7 +114,7 @@ app.get('/api/messages', (req, res) => {
     db.all(
         'SELECT id, nickname, content, timestamp FROM messages WHERE timestamp < ? ORDER BY timestamp DESC LIMIT ?',
         [before, limit],
-        (err, rows) => {
+        function(err, rows) {
             if (err) {
                 console.error('Ошибка при получении сообщений:', err);
                 return res.status(500).json({ error: 'Ошибка сервера' });
@@ -134,8 +127,8 @@ app.get('/api/messages', (req, res) => {
 });
 
 // Получение количества всех сообщений
-app.get('/api/messages/count', (req, res) => {
-    db.get('SELECT COUNT(*) as count FROM messages', (err, row) => {
+app.get('/api/messages/count', function(req, res) {
+    db.get('SELECT COUNT(*) as count FROM messages', function(err, row) {
         if (err) {
             console.error('Ошибка при подсчете сообщений:', err);
             return res.status(500).json({ error: 'Ошибка сервера' });
@@ -145,35 +138,35 @@ app.get('/api/messages/count', (req, res) => {
 });
 
 // Главная страница
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Обработка 404
-app.use((req, res) => {
+app.use(function(req, res) {
     res.status(404).send('Страница не найдена');
 });
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
-    console.log(`🚀 Сервер "Мой косяк" запущен на порту ${PORT}`);
-    console.log(`📱 Открой http://localhost:${PORT} чтобы начать чатиться!`);
+server.listen(PORT, function() {
+    console.log('🚀 Сервер "Мой косяк" запущен на порту ' + PORT);
+    console.log('📱 Открой http://localhost:' + PORT + ' чтобы начать чатиться!');
 });
 
 // Graceful shutdown
-process.on('SIGINT', () => {
+process.on('SIGINT', function() {
     console.log('\n📴 Сервер останавливается...');
     
     // Закрываем все WebSocket соединения
-    clients.forEach(client => {
+    clients.forEach(function(client) {
         if (client.readyState === WebSocket.OPEN) {
             client.close();
         }
     });
     
     // Закрываем базу данных
-    db.close((err) => {
+    db.close(function(err) {
         if (err) {
             console.error('Ошибка при закрытии базы данных:', err);
         }
