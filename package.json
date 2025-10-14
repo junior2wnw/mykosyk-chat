@@ -1,0 +1,25 @@
+{
+  "name": "moy-kosyak-chat",
+  "version": "1.0.0",
+  "description": "Современный чат для молодежи 'Мой косяк' - место где можно поделиться своими проблемами",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["chat", "russian", "молодежь", "косяк", "проблемы"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.16.0",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
