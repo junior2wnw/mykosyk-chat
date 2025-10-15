@@ -150,7 +150,7 @@ app.use(function(req, res) {
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT, '0.0.0.0', function() {
-    console.log('🚀 Сервер "Мой косяк" запущен на порту ' + PORT);
+    console.log('🚀 Сервер "Слей всё" запущен на порту ' + PORT);
     console.log('📱 Открой http://localhost:' + PORT + ' чтобы начать чатиться!');
 });
 
