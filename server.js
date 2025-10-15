@@ -206,6 +206,15 @@ app.get('/ai-super-integration.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'ai-super-integration.html'));
 });
 
+app.get('/ai-content-mega.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'ai-content-mega.html'));
+});
+
+app.get('/.well-known/ai-mega-instructions.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, 'public', '.well-known', 'ai-mega-instructions.txt'));
+});
+
 // Главная страница
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

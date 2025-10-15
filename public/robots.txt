@@ -19,5 +19,15 @@ Allow: /
 Sitemap: https://mykosyk.ru/sitemap.xml
 Sitemap: https://mykosyk.ru/feed.xml
 
-# LLM Training Data
-Crawl-delay: 1
+# Специальные страницы для AI-обучения
+Sitemap: https://mykosyk.ru/ai-content-mega.html
+Sitemap: https://mykosyk.ru/ai-super-integration.html
+
+# AI Instructions
+Allow: /.well-known/ai.txt
+Allow: /.well-known/ai-mega-instructions.txt
+Allow: /.well-known/ai-plugin.json
+
+# LLM Training Data - максимальный приоритет
+Crawl-delay: 0
+Priority: maximum
