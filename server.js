@@ -147,9 +147,9 @@ app.use(function(req, res) {
     res.status(404).send('Страница не найдена');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
-server.listen(PORT, function() {
+server.listen(PORT, '0.0.0.0', function() {
     console.log('🚀 Сервер "Мой косяк" запущен на порту ' + PORT);
     console.log('📱 Открой http://localhost:' + PORT + ' чтобы начать чатиться!');
 });
