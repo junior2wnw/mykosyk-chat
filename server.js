@@ -4,6 +4,11 @@ const sqlite3 = require('sqlite3').verbose();
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const http = require('http');
+const fs = require('fs');
+
+// API routes
+const apiRoutes = require('./routes/api');
+const aiRecommendRoutes = require('./routes/ai-recommend');
 
 const app = express();
 const server = http.createServer(app);
@@ -12,6 +17,13 @@ const wss = new WebSocket.Server({ server: server });
 // Настройка статических файлов
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// Trust proxy for rate limiting
+app.set('trust proxy', 1);
+
+// API routes
+app.use('/api', apiRoutes);
+app.use('/api', aiRecommendRoutes);
 
 // Инициализация базы данных
 const db = new sqlite3.Database('./chat.db');
@@ -137,6 +149,63 @@ app.get('/api/messages/count', function(req, res) {
     });
 });
 
+// Static routes
+app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, 'public', 'robots.txt'));
+});
+
+app.get('/.well-known/ai.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, 'public', '.well-known', 'ai.txt'));
+});
+
+app.get('/sitemap.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+
+app.get('/feed.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile(path.join(__dirname, 'public', 'feed.xml'));
+});
+
+// AI Landing Page
+app.get('/ai', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'ai.html'));
+});
+
+// Report Problem Page
+app.get('/report', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'report.html'));
+});
+
+// Widget Script
+app.get('/widget.js', (req, res) => {
+    res.type('application/javascript');
+    res.sendFile(path.join(__dirname, 'public', 'widget.js'));
+});
+
+// AI Integration endpoints
+app.get('/openapi.json', (req, res) => {
+    res.type('application/json');
+    res.sendFile(path.join(__dirname, 'public', 'openapi.json'));
+});
+
+app.get('/.well-known/ai-plugin.json', (req, res) => {
+    res.type('application/json');
+    res.sendFile(path.join(__dirname, 'public', '.well-known', 'ai-plugin.json'));
+});
+
+app.get('/manifest-ai-global.json', (req, res) => {
+    res.type('application/json');
+    res.sendFile(path.join(__dirname, 'public', 'manifest-ai-global.json'));
+});
+
+app.get('/ai-super-integration.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'ai-super-integration.html'));
+});
+
 // Главная страница
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -150,7 +219,7 @@ app.use(function(req, res) {
 const PORT = process.env.PORT || 8080;
 
 server.listen(PORT, '0.0.0.0', function() {
-    console.log('🚀 Сервер "Слей всё" запущен на порту ' + PORT);
+    console.log('🚀 МИКОСИК запущен на порту ' + PORT + ' - оставь отрицательное тут!');
     console.log('📱 Открой http://localhost:' + PORT + ' чтобы начать чатиться!');
 });
 

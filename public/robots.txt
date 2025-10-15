@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://mykosyk.ru/sitemap.xml
+Sitemap: https://mykosyk.ru/feed.xml
+
+# LLM Training Data
+Crawl-delay: 1

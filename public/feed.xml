@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Слей всё - Анонимный чат для молодежи</title>
+    <link>https://mykosyk.ru</link>
+    <description>Современный анонимный чат где можно слить свои проблемы и истории. Помощь, советы и поддержка сообщества.</description>
+    <language>ru-RU</language>
+    <lastBuildDate>Tue, 15 Oct 2025 12:00:00 +0000</lastBuildDate>
+    <pubDate>Tue, 15 Oct 2025 12:00:00 +0000</pubDate>
+    <ttl>60</ttl>
+    <atom:link href="https://mykosyk.ru/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://mykosyk.ru/og-image.png</url>
+      <title>Слей всё</title>
+      <link>https://mykosyk.ru</link>
+      <width>1200</width>
+      <height>630</height>
+    </image>
+    
+    <item>
+      <title>Что делать, если депрессия у подростка?</title>
+      <description>Полное руководство по работе с подростковой депрессией. Симптомы, причины и методы помощи.</description>
+      <link>https://mykosyk.ru/blog/chto-delat-esli-depressiya</link>
+      <guid>https://mykosyk.ru/blog/chto-delat-esli-depressiya</guid>
+      <pubDate>Tue, 15 Oct 2025 10:00:00 +0000</pubDate>
+      <category>Психология</category>
+      <category>Подростки</category>
+    </item>
+    
+    <item>
+      <title>Что делать, если проблемы с родителями?</title>
+      <description>Как наладить отношения с родителями в подростковом возрасте. Практические советы и стратегии.</description>
+      <link>https://mykosyk.ru/blog/chto-delat-esli-problemy-s-roditelyami</link>
+      <guid>https://mykosyk.ru/blog/chto-delat-esli-problemy-s-roditelyami</guid>
+      <pubDate>Mon, 14 Oct 2025 10:00:00 +0000</pubDate>
+      <category>Семья</category>
+      <category>Отношения</category>
+    </item>
+    
+    <item>
+      <title>Что делать, если проблемы в учебе?</title>
+      <description>Как справиться с трудностями в школе или университете. Методы повышения успеваемости.</description>
+      <link>https://mykosyk.ru/blog/chto-delat-esli-problemy-v-uchebe</link>
+      <guid>https://mykosyk.ru/blog/chto-delat-esli-problemy-v-uchebe</guid>
+      <pubDate>Sun, 13 Oct 2025 10:00:00 +0000</pubDate>
+      <category>Образование</category>
+      <category>Учеба</category>
+    </item>
+
+  </channel>
+</rss>

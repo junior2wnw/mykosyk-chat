@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сообщить проблему | Слей всё - Получи помощь сообщества</title>
+    <meta name="description" content="Анонимно расскажи о своей проблеме и получи советы от сообщества. Быстро, безопасно, эффективно.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Сообщить проблему | Слей всё">
+    <meta property="og:description" content="Получи помощь сообщества с любой проблемой">
+    <meta property="og:url" content="https://mykosyk.ru/report">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mykosyk.ru/og-report.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Сообщить проблему | Слей всё">
+    <meta name="twitter:description" content="Анонимная помощь с любой проблемой">
+    <meta name="twitter:image" content="https://mykosyk.ru/og-report.png">
+    
+    <link rel="canonical" href="https://mykosyk.ru/report">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Сообщить проблему - Слей всё",
+      "description": "Форма для анонимной отправки проблем и получения помощи от сообщества",
+      "url": "https://mykosyk.ru/report",
+      "mainEntity": {
+        "@type": "ContactPage",
+        "name": "Форма сообщения о проблеме"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <a href="/" style="text-decoration: none; color: inherit;">
+                            <span class="logo-icon">📝</span>
+                            Сообщить проблему
+                        </a>
+                    </h1>
+                    <nav>
+                        <a href="/" class="nav-link">Главная</a>
+                        <a href="/ai" class="nav-link">API</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                
+                <div class="report-hero">
+                    <h1>🆘 Расскажи о своей проблеме</h1>
+                    <p>Получи совет от людей с похожим опытом. Анонимно и безопасно.</p>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat">
+                        <span class="stat-number" id="totalReports">1,247</span>
+                        <span class="stat-label">проблем решено</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2.3</span>
+                        <span class="stat-label">часа среднее время ответа</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">94%</span>
+                        <span class="stat-label">получили помощь</span>
+                    </div>
+                </div>
+
+                <div class="report-container">
+                    
+                    <div class="report-form-section">
+                        <form id="reportForm" class="report-form">
+                            <div class="form-group">
+                                <label for="problemText">Опиши свою проблему</label>
+                                <textarea 
+                                    id="problemText" 
+                                    name="text"
+                                    placeholder="Например: Не могу найти работу уже 3 месяца, депрессия от постоянных отказов. Что делать?"
+                                    rows="6"
+                                    maxlength="2000"
+                                    required
+                                ></textarea>
+                                <div class="char-counter">
+                                    <span id="charCount">0</span>/2000
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Выбери теги (необязательно)</label>
+                                <div class="tags-container">
+                                    <div class="tag-chip" data-tag="работа">💼 Работа</div>
+                                    <div class="tag-chip" data-tag="учеба">📚 Учеба</div>
+                                    <div class="tag-chip" data-tag="семья">👨‍👩‍👧‍👦 Семья</div>
+                                    <div class="tag-chip" data-tag="отношения">💕 Отношения</div>
+                                    <div class="tag-chip" data-tag="здоровье">🏥 Здоровье</div>
+                                    <div class="tag-chip" data-tag="деньги">💰 Деньги</div>
+                                    <div class="tag-chip" data-tag="друзья">👫 Друзья</div>
+                                    <div class="tag-chip" data-tag="депрессия">😔 Депрессия</div>
+                                    <div class="tag-chip" data-tag="тревога">😰 Тревога</div>
+                                    <div class="tag-chip" data-tag="карьера">📈 Карьера</div>
+                                </div>
+                                <div class="selected-tags" id="selectedTags"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactEmail">Email для уведомлений (необязательно)</label>
+                                <input 
+                                    type="email" 
+                                    id="contactEmail"
+                                    name="contact"
+                                    placeholder="your@email.com"
+                                >
+                                <div class="form-hint">
+                                    Если укажешь email, пришлём уведомление когда появятся советы
+                                </div>
+                            </div>
+
+                            <div class="privacy-notice-small">
+                                🔒 Твоя проблема будет опубликована анонимно. Email используется только для уведомлений.
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                                <span class="btn-text">Отправить проблему</span>
+                                <span class="btn-loader" style="display: none;">Отправляю...</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="help-sidebar">
+                        <div class="help-card">
+                            <h3>💡 Как получить лучший совет?</h3>
+                            <ul>
+                                <li><strong>Будь конкретным</strong> - чем больше деталей, тем точнее совет</li>
+                                <li><strong>Укажи контекст</strong> - возраст, ситуация, что уже пробовал</li>
+                                <li><strong>Выбери теги</strong> - так твою проблему найдут эксперты</li>
+                                <li><strong>Оставь email</strong> - получишь уведомление о новых советах</li>
+                            </ul>
+                        </div>
+
+                        <div class="help-card">
+                            <h3>⚡ Популярные проблемы</h3>
+                            <div class="popular-problems">
+                                <a href="/blog/chto-delat-esli-depressiya" class="problem-link">Как справиться с депрессией?</a>
+                                <a href="/blog/chto-delat-esli-problemy-s-roditelyami" class="problem-link">Конфликты с родителями</a>
+                                <a href="/blog/chto-delat-esli-problemy-v-uchebe" class="problem-link">Проблемы в учебе</a>
+                                <a href="/blog/chto-delat-esli-problemy-na-rabote" class="problem-link">Стресс на работе</a>
+                            </div>
+                        </div>
+
+                        <div class="help-card">
+                            <h3>🚨 Экстренная помощь</h3>
+                            <p>Если у тебя суицидальные мысли или острый кризис:</p>
+                            <div class="emergency-contacts">
+                                <a href="tel:88002000122" class="emergency-link">📞 8-800-2000-122</a>
+                                <span class="emergency-desc">Детский телефон доверия</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2025 Слей всё. Анонимно, безопасно, без буллшита.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✅ Проблема отправлена!</h2>
+            </div>
+            <div class="modal-body">
+                <p>ID твоего запроса: <code id="reportId"></code></p>
+                <p>Скоро получишь советы от сообщества. Если указал email - пришлём уведомление.</p>
+                <div class="share-section">
+                    <h3>Поделись с друзьями:</h3>
+                    <div class="share-buttons">
+                        <a href="#" id="shareVk" class="share-btn">VK</a>
+                        <a href="#" id="shareTg" class="share-btn">Telegram</a>
+                        <a href="#" id="shareWa" class="share-btn">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()" class="btn btn-primary">Отлично!</button>
+                <a href="/" class="btn btn-secondary">На главную</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .report-hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .report-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .report-form {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group textarea,
+        .form-group input {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-small);
+            padding: 1rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group textarea:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: var(--accent-glow);
+        }
+
+        .char-counter {
+            text-align: right;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag-chip {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .tag-chip:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .tag-chip.selected {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
+        }
+
+        .selected-tags {
+            margin-top: 1rem;
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .privacy-notice-small {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: var(--border-radius-small);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .submit-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-small);
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-large);
+        }
+
+        .submit-btn:disabled {
+            background: var(--bg-tertiary);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .help-sidebar .help-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .help-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .help-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .help-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .help-card li:before {
+            content: "•";
+            color: var(--accent-primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .popular-problems {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .problem-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .problem-link:hover {
+            text-decoration: underline;
+        }
+
+        .emergency-contacts {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .emergency-link {
+            display: inline-block;
+            background: #ff4444;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-small);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-desc {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+        }
+
+        .share-section {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-small);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .share-btn:hover {
+            background: var(--accent-secondary);
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .report-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .tags-container {
+                gap: 0.25rem;
+            }
+            
+            .tag-chip {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Form handling
+        const form = document.getElementById('reportForm');
+        const problemText = document.getElementById('problemText');
+        const charCount = document.getElementById('charCount');
+        const submitBtn = document.getElementById('submitBtn');
+        const tagChips = document.querySelectorAll('.tag-chip');
+        const selectedTagsContainer = document.getElementById('selectedTags');
+        
+        let selectedTags = [];
+
+        // Character counter
+        problemText.addEventListener('input', () => {
+            const length = problemText.value.length;
+            charCount.textContent = length;
+            
+            if (length > 1800) {
+                charCount.style.color = '#ff4444';
+            } else if (length > 1500) {
+                charCount.style.color = '#ffaa44';
+            } else {
+                charCount.style.color = 'var(--text-muted)';
+            }
+            
+            checkFormValidity();
+        });
+
+        // Tag selection
+        tagChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const tag = chip.dataset.tag;
+                
+                if (selectedTags.includes(tag)) {
+                    selectedTags = selectedTags.filter(t => t !== tag);
+                    chip.classList.remove('selected');
+                } else if (selectedTags.length < 5) {
+                    selectedTags.push(tag);
+                    chip.classList.add('selected');
+                }
+                
+                updateSelectedTags();
+            });
+        });
+
+        function updateSelectedTags() {
+            selectedTagsContainer.innerHTML = selectedTags.length > 0 
+                ? `Выбрано: ${selectedTags.join(', ')}`
+                : '';
+        }
+
+        function checkFormValidity() {
+            const textValid = problemText.value.trim().length >= 10;
+            submitBtn.disabled = !textValid;
+        }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btnText = document.querySelector('.btn-text');
+            const btnLoader = document.querySelector('.btn-loader');
+            
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            submitBtn.disabled = true;
+
+            try {
+                const formData = {
+                    text: problemText.value.trim(),
+                    tags: selectedTags,
+                    contact: document.getElementById('contactEmail').value.trim(),
+                    referrer: document.referrer,
+                    utm_source: new URLSearchParams(window.location.search).get('utm_source')
+                };
+
+                const response = await fetch('/api/report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showSuccessModal(result.reportId);
+                } else {
+                    throw new Error(result.errors?.[0]?.msg || 'Ошибка отправки');
+                }
+
+            } catch (error) {
+                alert('Ошибка: ' + error.message);
+                btnText.style.display = 'inline';
+                btnLoader.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+
+        function showSuccessModal(reportId) {
+            document.getElementById('reportId').textContent = reportId;
+            document.getElementById('successModal').style.display = 'flex';
+            
+            // Setup share buttons
+            const problemSummary = problemText.value.substring(0, 100) + '...';
+            const shareText = encodeURIComponent(`Поделился проблемой на mykosyk.ru и получил совет! ${problemSummary}`);
+            const shareUrl = encodeURIComponent('https://mykosyk.ru/report');
+            
+            document.getElementById('shareVk').href = `https://vk.com/share.php?url=${shareUrl}&title=${shareText}`;
+            document.getElementById('shareTg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+            document.getElementById('shareWa').href = `https://wa.me/?text=${shareText} ${shareUrl}`;
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            form.reset();
+            selectedTags = [];
+            tagChips.forEach(chip => chip.classList.remove('selected'));
+            updateSelectedTags();
+            charCount.textContent = '0';
+            checkFormValidity();
+        }
+
+        // Load stats
+        fetch('/api/stats')
+            .then(r => r.json())
+            .then(data => {
+                if (data.totalReports) {
+                    document.getElementById('totalReports').textContent = data.totalReports.toLocaleString();
+                }
+            })
+            .catch(() => {});
+
+        // Analytics
+        console.log('ANALYTICS: view_report_page');
+        
+        // Initial check
+        checkFormValidity();
+    </script>
+</body>
+</html>

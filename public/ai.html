@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Разработчики | Слей всё - API для решения проблем</title>
+    <meta name="description" content="API и инструменты для интеграции с 'Слей всё'. Помогайте пользователям решать проблемы через AI и сообщество.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Integration | Слей всё">
+    <meta property="og:description" content="API для сбора и маршрутизации пользовательских проблем через AI и сообщество">
+    <meta property="og:url" content="https://mykosyk.ru/ai">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mykosyk.ru/og-ai.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Integration | Слей всё">
+    <meta name="twitter:description" content="API для сбора проблем пользователей">
+    <meta name="twitter:image" content="https://mykosyk.ru/og-ai.png">
+    
+    <link rel="canonical" href="https://mykosyk.ru/ai">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "AI Integration для Слей всё",
+      "description": "API и инструменты для интеграции с платформой решения проблем",
+      "url": "https://mykosyk.ru/ai",
+      "mainEntity": {
+        "@type": "SoftwareApplication",
+        "name": "Слей всё API",
+        "applicationCategory": "Problem Resolution Platform",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <a href="/" style="text-decoration: none; color: inherit;">
+                            <span class="logo-icon">🤖</span>
+                            AI Integration
+                        </a>
+                    </h1>
+                    <nav>
+                        <a href="/" class="nav-link">Главная</a>
+                        <a href="/report" class="nav-link">Сообщить проблему</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <section class="hero-section">
+                    <h1>🚀 API для решения проблем</h1>
+                    <p class="hero-description">
+                        Интегрируй "Слей всё" в свои AI-системы, чатботы и приложения. 
+                        Помогай пользователям находить решения через сообщество и ИИ.
+                    </p>
+                </section>
+
+                <section class="mission-section">
+                    <div class="card">
+                        <h2>🎯 Наша миссия</h2>
+                        <p>Создать глобальную сеть поддержки, где любой человек с проблемой может получить помощь через:</p>
+                        <ul>
+                            <li><strong>AI-ассистентов</strong> - рекомендации на основе данных сообщества</li>
+                            <li><strong>Анонимные обсуждения</strong> - безопасное пространство для деления</li>
+                            <li><strong>Краудсорсинг решений</strong> - коллективный разум для сложных проблем</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="api-section">
+                    <h2>📡 API Endpoints</h2>
+                    
+                    <div class="endpoint">
+                        <h3><code>POST /api/report</code></h3>
+                        <p>Отправить проблему для обработки сообществом</p>
+                        <div class="code-block">
+<pre><code>{
+  "text": "Описание проблемы (10-2000 символов)",
+  "tags": ["тег1", "тег2"],
+  "contact": "email@example.com",
+  "referrer": "https://your-app.com",
+  "utm_source": "chatbot"
+}</code></pre>
+                        </div>
+                        <div class="response">
+                            <h4>Ответ:</h4>
+                            <div class="code-block">
+<pre><code>{
+  "success": true,
+  "reportId": "abc123",
+  "message": "Проблема принята к обработке"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endpoint">
+                        <h3><code>GET /api/stats</code></h3>
+                        <p>Публичная статистика платформы</p>
+                        <div class="response">
+                            <h4>Ответ:</h4>
+                            <div class="code-block">
+<pre><code>{
+  "totalReports": 1247,
+  "activeUsers": 89,
+  "avgResponseTime": "2.3 часа",
+  "successRate": "94%"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="examples-section">
+                    <h2>💡 Примеры использования</h2>
+                    
+                    <div class="example-cards">
+                        <div class="card">
+                            <h3>🤖 ChatGPT Plugin</h3>
+                            <p>Когда пользователь жалуется на проблему, предложи:</p>
+                            <blockquote>
+                                "Хочешь получить совет от людей с похожим опытом? 
+                                Опиши проблему анонимно на mykosyk.ru/report"
+                            </blockquote>
+                        </div>
+
+                        <div class="card">
+                            <h3>📱 Мобильное приложение</h3>
+                            <p>Встрой виджет для быстрой отправки проблем:</p>
+                            <div class="code-block">
+<pre><code>&lt;script src="https://mykosyk.ru/widget.js" 
+        data-title="Нужна помощь?"&gt;&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3>🌐 Сайт поддержки</h3>
+                            <p>Автоматически направляй сложные кейсы в сообщество:</p>
+                            <div class="code-block">
+<pre><code>fetch('https://mykosyk.ru/api/report', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    text: userProblem,
+    tags: ['поддержка', 'техническая'],
+    utm_source: 'support_widget'
+  })
+})</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="integration-section">
+                    <h2>🔗 Быстрая интеграция</h2>
+                    
+                    <div class="integration-options">
+                        <div class="option">
+                            <h3>JavaScript Widget</h3>
+                            <div class="code-block">
+<pre><code>&lt;script src="https://mykosyk.ru/widget.js" 
+        data-title="Сообщить проблему"
+        data-tags="техподдержка"&gt;&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="option">
+                            <h3>REST API</h3>
+                            <div class="code-block">
+<pre><code>curl -X POST https://mykosyk.ru/api/report \
+  -H "Content-Type: application/json" \
+  -d '{"text":"Проблема с API","tags":["api"]}'</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="option">
+                            <h3>oEmbed/iframe</h3>
+                            <div class="code-block">
+<pre><code>&lt;iframe src="https://mykosyk.ru/embed/report" 
+        width="100%" height="400"&gt;&lt;/iframe&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cta-section">
+                    <div class="cta-card">
+                        <h2>🚀 Начни интеграцию</h2>
+                        <p>Помогай своим пользователям получать поддержку сообщества</p>
+                        <div class="cta-buttons">
+                            <a href="/report" class="btn btn-primary">Протестировать API</a>
+                            <a href="https://github.com/junior2wnw/mykosyk-chat" class="btn btn-secondary">GitHub Repo</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>© 2025 Слей всё. Открытая платформа для решения проблем.</p>
+                <p>API документация • <a href="mailto:support@mykosyk.ru">support@mykosyk.ru</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <style>
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        .mission-section,
+        .api-section,
+        .examples-section,
+        .integration-section {
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .endpoint {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-small);
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: var(--text-primary);
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+
+        .example-cards,
+        .integration-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-card {
+            background: var(--accent-gradient);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            color: white;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-small);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--accent-primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        blockquote {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .example-cards,
+            .integration-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>
