@@ -131,10 +131,39 @@ body::before {
     50% { opacity: 0.5; }
 }
 
-/* Основной контент */
+/* Основной контент - компактный дизайн */
 .main {
-    min-height: calc(100vh - 140px);
-    padding: 2rem 0;
+    min-height: calc(100vh - 120px);
+    padding: 1rem 0;
+}
+
+/* Компактная информационная панель */
+.info-compact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.slogan {
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.privacy-mini {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* Уведомление о приватности */
@@ -190,9 +219,11 @@ body::before {
     font-size: 1rem;
 }
 
-/* Контейнер сообщений */
+/* Контейнер сообщений - увеличенный для одного экрана */
 .messages-container {
-    height: 500px;
+    height: calc(100vh - 300px);
+    min-height: 400px;
+    max-height: 600px;
     overflow-y: auto;
     position: relative;
 }
@@ -520,7 +551,20 @@ body::before {
     }
     
     .messages-container {
-        height: 400px;
+        height: calc(100vh - 280px);
+        min-height: 300px;
+        max-height: 400px;
+    }
+    
+    .info-compact {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 0.75rem;
+    }
+    
+    .slogan {
+        font-size: 1rem;
     }
     
     .form-row {
@@ -564,7 +608,26 @@ body::before {
     }
     
     .messages-container {
-        height: 350px;
+        height: calc(100vh - 250px);
+        min-height: 250px;
+        max-height: 350px;
+    }
+    
+    .main {
+        padding: 0.5rem 0;
+    }
+    
+    .info-compact {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .slogan {
+        font-size: 0.95rem;
+    }
+    
+    .privacy-mini {
+        font-size: 0.8rem;
     }
     
     .messages {
